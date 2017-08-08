@@ -21,5 +21,4 @@ do
 tries=$(($tries+1))
 git commit --amend --quiet -m "${commit_message}. Nonce: ${tries}."
 commit_hash=$(git rev-parse HEAD)
-end_time=$(date +%s.%N)
 done
