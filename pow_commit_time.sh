@@ -14,11 +14,8 @@ fi
 git commit --quiet -m "${commit_message}"
 commit_hash=$(git rev-parse HEAD)
 
-tries=1
-
 while [[ $commit_hash != ${zero_regex_string}* ]] 
 do
-tries=$(($tries+1))
 git commit --amend --quiet -m "${commit_message}"
 commit_hash=$(git rev-parse HEAD)
 done
