@@ -1,22 +1,22 @@
 #!/usr/bin/env bash
-# Options must include -m <commit message> and -z <zeroes in pattern to find>
+# Options must include -m <commit message> and -p <pattern to find>
 # Optionals include -n which is whether to use nonce to find hash or not.
 
 use_nonce=false
 
-while getopts ":m:z:n" opt; do
+while getopts ":m:p:n" opt; do
 	case $opt in
 		m)
 			commit_message=$OPTARG
 			;;
-		z)
-			zeroes=$OPTARG
+		p)
+			pattern=$OPTARG
 			;;
 		n)
 			use_nonce=true
 			;;
 		*)
-			echo "Usage pow_commit.sh -m <commit_message> -z <zeroes> -n"
+			echo "Usage pow_commit.sh -m <commit_message> -p <pattern> -n"
 			exit 1
 			;;
 		\?)
@@ -31,13 +31,11 @@ while getopts ":m:z:n" opt; do
 done
 
 
-if [ ! $"commit_message" ] || [ ! "$zeroes" ]
+if [ ! $"commit_message" ] || [ ! "$pattern" ]
 then
 	echo "Missing options."
 	exit 1
 fi
-
-zero_regex_string=$(printf "%0${zeroes}d" 0)
 
 added_files=$(git add .)
 
@@ -67,7 +65,7 @@ function commit {
 
 commit_hash=$(git rev-parse HEAD)
 
-while [[ $commit_hash != ${zero_regex_string}* ]] 
+while [[ $commit_hash != $pattern* ]] 
 do
 tries=$(($tries+1))
 commit

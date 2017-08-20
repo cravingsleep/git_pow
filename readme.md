@@ -4,4 +4,4 @@ This nifty little script makes sure your commit hashes always start with the amo
 
 It even committed itself!
 
-And as proof that I did this work you'll notice all the commit hashes start with 0!
+And as proof that I did this work you'll notice all the commit hashes start with 0 or my initials!
