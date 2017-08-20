@@ -51,17 +51,17 @@ tries=1
 
 if [ $use_nonce = true ]
 then
-	git commit --quiet -m "${commit_message}. Nonce: 1."
+	git commit --quiet -m "${commit_message} Nonce: 1."
 else
-	git commit --quiet -m "${commit_message}."
+	git commit --quiet -m "${commit_message}"
 fi
 
 function commit {
 	if [ $use_nonce = true ] 
 	then
-		git commit --amend --quiet -m "${commit_message}. Nonce: ${tries}."
+		git commit --amend --quiet -m "${commit_message} Nonce: ${tries}."
 	else
-		git commit --amend --quiet -m "${commit_message}."
+		git commit --amend --quiet -m "${commit_message}"
 	fi
 }
 
