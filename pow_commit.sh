@@ -31,7 +31,7 @@ while getopts ":m:z:n" opt; do
 done
 
 
-if [ ! $"commit_message" ] || [ ! "$zeroes" ] || [ ! $"use_nonce" ]
+if [ ! $"commit_message" ] || [ ! "$zeroes" ]
 then
 	echo "Missing options."
 	exit 1
